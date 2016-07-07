@@ -1,0 +1,72 @@
+	<html>
+<title>Physics Stick Figure Test</title>
+<head>
+<style>
+@font-face {
+    font-family: PressStart;
+    src: url("fonts/PrStart.ttf");
+}
+
+div {
+    font-family: myFirstFont;
+}
+</style>
+<script>
+var isLeftDown = false;
+var isRightDown = false;
+var isUpDown = false;
+var isDownDown = false;
+
+window.onkeydown = function(e) {
+   var key = e.keyCode ? e.keyCode : e.which;
+   
+   if (key == 37) {
+       isLeftDown = true;
+       hitDirection = "left";
+   }else if (key == 39) {
+       isRightDown = true;
+       hitDirection = "right";
+   }
+   
+   if(key == 38){
+   isUpDown = true;
+   }else if(key==40){
+   isDownDown = true;
+   }
+   
+   if(key == 32){
+   		if(hitDirection == "left"){
+   			shoot("left");
+   		}else{
+   			shoot("right");
+   		}
+   }
+   
+}
+
+window.onkeyup = function(e) {
+   var key = e.keyCode ? e.keyCode : e.which;
+
+   if (key == 37) {
+       isLeftDown = false;
+   }else if (key == 39) {
+       isRightDown = false;
+   }
+   
+   if(key == 38){
+   isUpDown = false;
+   }else if(key==40){
+   isDownDown = false;
+   }
+}
+
+setInterval(function(){ updatePos(); checkKeys();}, 18);
+</script>
+<body onload="hitDirection='right';" style="font-family: PressStart;">
+<canvas id="myCanvas" width="1700" height="800" style="border:1px solid #000000;">
+
+</canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
